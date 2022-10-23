@@ -1,4 +1,5 @@
 import { FormWrapper } from "./FormWrapper";
+import "./form.css";
 
 type UserData = {
   email: string;
