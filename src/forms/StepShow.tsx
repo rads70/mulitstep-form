@@ -1,27 +1,45 @@
-import React, { ReactNode } from "react";
+import React, { useContext, useEffect } from "react";
+import { FormContext } from "../App";
 
 type Props = {
-  steps: ReactNode[];
-  currentStepIndex: number;
+  steps: number;
 };
 
-function StepShow({ steps, currentStepIndex }: Props) {
-  return (
-    <div className="flex w-2/3 justify-center items-center mx-auto">
-      {steps.map((step, index) => (
-        <React.Fragment key={"step" + index}>
+function StepShow({ steps }: Props): JSX.Element {
+  const { activeStepIndex } = useContext(FormContext);
+
+  useEffect(() => {
+    const stepperItems = document.querySelectorAll(".stepper-item");
+    stepperItems.forEach((step, i) => {
+      if (i <= activeStepIndex) {
+        step.classList.add("bg-blue-500", "text-white");
+      } else {
+        step.classList.remove("bg-blue-500", "text-white");
+      }
+    });
+  }, [activeStepIndex]);
+
+  const RenderSteps = (): JSX.Element => {
+    let stepper = [];
+    for (let i = 0; i < steps; i++) {
+      stepper.push(
+        <React.Fragment key={"step" + i}>
           <div
-            className={`rounded-full bg-blue-400 h-10 w-10 flex items-center justify-center ${
-              index === currentStepIndex ? "stepActive" : ""
-            }`}
+            className={`stepper-item border rounded-full h-10 w-10 flex items-center justify-center `}
           >
-            {index + 1}
+            {i + 1}
           </div>
-          {index < steps.length - 1 ? (
+          {i < steps - 1 ? (
             <div className="border-t-2 border-slate-900 flex-auto"></div>
           ) : null}
         </React.Fragment>
-      ))}
+      );
+    }
+    return <>{stepper}</>;
+  };
+  return (
+    <div className="flex w-2/3 justify-center items-center mx-auto mb-6">
+      <RenderSteps />
     </div>
   );
 }
