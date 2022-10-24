@@ -8,24 +8,8 @@ type Props = {
 export function FormWrapper({ title, children }: Props) {
   return (
     <>
-      <h2
-        style={{
-          textAlign: "center",
-          margin: 0,
-          marginBottom: "2rem",
-        }}
-      >
-        {title}
-      </h2>
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem .5rem",
-          justifyContent: "flex-start",
-          gridTemplateColumns: "auto minmax(auto, 400px)",
-          alignItems: "center",
-        }}
-      >
+      <h2 className=" text-center m-0 mb-8 text-2xl">{title}</h2>
+      <div className="grid gap-y-4 gap-x-2 justify-start items-center grid-cols-form">
         {children}
       </div>
     </>

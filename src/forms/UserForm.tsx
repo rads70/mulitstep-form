@@ -25,6 +25,7 @@ export default function UserForm({
         required
         value={firstName}
         onChange={(e) => updateFields({ firstName: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
       <label htmlFor="">Last Name</label>
       <input
@@ -32,6 +33,7 @@ export default function UserForm({
         required
         value={lastName}
         onChange={(e) => updateFields({ lastName: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
       <label htmlFor="">Age</label>
       <input
@@ -39,6 +41,7 @@ export default function UserForm({
         required
         value={age}
         onChange={(e) => updateFields({ age: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
     </FormWrapper>
   );

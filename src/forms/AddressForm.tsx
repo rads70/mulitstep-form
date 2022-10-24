@@ -27,24 +27,28 @@ export default function AddressForm({
         required
         autoFocus
         onChange={(e) => updateFields({ street: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
       <label htmlFor="">City</label>
       <input
         type="text"
         required
         onChange={(e) => updateFields({ city: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
       <label htmlFor="">State</label>
       <input
         type="text"
         required
         onChange={(e) => updateFields({ state: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
       <label htmlFor="">Zip</label>
       <input
         type="text"
         required
         onChange={(e) => updateFields({ zip: e.target.value })}
+        className="border-2 border-slate-200 px-2 py-1 rounded-md"
       />
     </FormWrapper>
   );
