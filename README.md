@@ -1,10 +1,11 @@
 # Mulitstep-form component
-**Multistep form in React with Formik and validation with Yup**
+**Multistep form in React**
 
-Multistep form with Formkik and yup for validation, Tailwind used for basic styling.
+
+Multistep form in React with Formkik and yup for validation, Tailwind used for basic styling.
 
 ## Dependencies
--Formik
--Yup
--Tailwind CSS
+- Formik
+- Yup
+- Tailwind CSS
 
