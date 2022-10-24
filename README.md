@@ -4,7 +4,7 @@
 Multistep form with Formkik and yup for validation, Tailwind used for basic styling.
 
 ## Dependencies
-Formik
-Yup
-Tailwind CSS
+-Formik
+-Yup
+-Tailwind CSS
 
