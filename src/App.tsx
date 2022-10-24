@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-import { Formik, Form, FormikValues } from "formik";
+import { createContext, useState } from "react";
+import { Formik, Form, FormikState } from "formik";
 import * as yup from "yup";
 
 import AccountForm from "./forms/AccountForm";
@@ -50,16 +50,19 @@ const schema = yup.object().shape({
 
 function App() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
-  const steps = [<UserForm />, <AddressForm />, <AccountForm />];
+  const formSteps = [<UserForm />, <AddressForm />, <AccountForm />];
 
-  const handleFormikSubmit = (values: FormData): void => {
+  const handleFormikSubmit = (values: FormData, resetForm: any): void => {
     const index = activeStepIndex;
 
-    if (index !== steps.length - 1) {
+    if (index !== formSteps.length - 1) {
       setActiveStepIndex(index + 1);
       return;
     }
-    console.log("Submitting");
+
+    alert(JSON.stringify(values));
+    resetForm();
+    setActiveStepIndex(0);
   };
 
   const back = () => {
@@ -70,7 +73,7 @@ function App() {
   };
 
   const RenderStep = (): JSX.Element => {
-    return <>{steps[activeStepIndex]}</>;
+    return <>{formSteps[activeStepIndex]}</>;
   };
 
   return (
@@ -78,11 +81,14 @@ function App() {
       <div className="border relative border-slate-800 rounded-lg max-w-2xl p-6">
         <Formik
           initialValues={INITIAL_DATA}
-          onSubmit={(values) => handleFormikSubmit(values)}
+          onSubmit={(values, { resetForm }) =>
+            handleFormikSubmit(values, resetForm)
+          }
           validationSchema={schema}
+          enableReinitialize
         >
           <Form>
-            <StepShow steps={steps.length} />
+            <StepShow steps={formSteps.length} />
             <RenderStep />
 
             <div className="flex justify-end mt-4 gap-2">
@@ -99,7 +105,7 @@ function App() {
                 type="submit"
                 className="border border-slate-200  bg-slate-200 rounded-md px-2 py-1 hover:bg-slate-400 transition-colors duration-200"
               >
-                {activeStepIndex === steps.length - 1 ? "Finish" : "Next"}
+                {activeStepIndex === formSteps.length - 1 ? "Finish" : "Next"}
               </button>
             </div>
           </Form>
